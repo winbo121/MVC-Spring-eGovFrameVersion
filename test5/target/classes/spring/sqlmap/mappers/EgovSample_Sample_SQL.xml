@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="User">
+
+<insert id="insertUser" parameterType="BoardVO">
+insert into userinfo (name,password) values (#{name},#{password})
+</insert>
+
+
+<select id="selectUser" parameterType="BoardVO" resultType="BoardVO">
+select name,password from userinfo
+</select>
+
+
+<delete id="deleteUser" parameterType="BoardVO">
+delete from userinfo where name=#{name}
+</delete>
+
+
+</mapper>
