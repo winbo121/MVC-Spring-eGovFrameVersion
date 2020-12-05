@@ -1,0 +1,25 @@
+docker pull ubuntu:16.04 (없을시)
+
+-------------- 컨테이너 생성 --------------
+docker run -d --privileged -p{포워딩할 임의 포트}:{포워딩 당할 포트} --name {컨테이너 이름} ubuntu:16.04 /sbin/init
+docker exec -it {컨테이너 이름} /bin/bash
+
+
+-------------- 우분투 들어올시 ---------
+apt-get update
+apt-get install vim
+
+
+apt-get install openjdk-8-jre-headless
+apt-get install openjdk-8-jdk
+java -version
+
+apt-get install tomcat8
+/usr/share/tomcat8/bin/version.sh
+service tomcat8 start
+http://서버의아이피:{도커쪽으로 포워딩할 임의 포트}
+
+***.war ---> /var/lib/tomcat8/webapps/ 파일저장
+
+
+
