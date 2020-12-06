@@ -2,7 +2,7 @@ apt-get install docker.io (밖 우분투에서 도커 깔기)
 docker pull ubuntu:16.04 (없을시)
 
 -------------- 컨테이너 생성 --------------
-docker run -d --privileged -p{포워딩할 임의 포트}:{포워딩 당할 포트} --name {컨테이너 이름} ubuntu:16.04 /sbin/init
+docker run -d --privileged -p{포워딩할 임의 포트}:8080 --name {컨테이너 이름} ubuntu:16.04 /sbin/init
 docker exec -it {컨테이너 이름} /bin/bash
 
 
