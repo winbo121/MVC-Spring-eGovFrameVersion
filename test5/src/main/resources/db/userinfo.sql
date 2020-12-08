@@ -20,3 +20,25 @@ insert into userinfo values ('15993','95598')
 insert into userinfo values ('1tt53','95598')
 insert into userinfo values ('16653','95598')
 insert into userinfo values ('19953','95598')
+/*
+/*인덱스 설정*/
+CREATE INDEX userinfo_index on userinfo(name);
+
+/*함수 설정*/
+CREATE or REPLACE FUNCTION userinfo_function1 (test VARCHAR2) RETURN VARCHAR2 
+	IS num1 NUMBER;
+    
+	BEGIN
+	    
+  	IF TEST = 'EX1' THEN
+      SELECT count(*) INTO  num1 FROM userinfo;
+      
+ 	ELSIF TEST = 'EX2' THEN
+        select count(*)+10 INTO  num1 FROM userinfo;
+        
+    END IF;
+    
+      RETURN num1;
+        
+	END userinfo_function1;
+*/
