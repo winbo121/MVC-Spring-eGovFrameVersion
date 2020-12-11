@@ -8,7 +8,7 @@ docker exec -it {컨테이너 이름} /bin/bash
 
 -------------- 우분투 들어올시 ---------
 apt-get update
-apt-get install 
+apt-get install git
 
 
 apt-get install openjdk-8-jre-headless
