@@ -97,7 +97,7 @@ EXECUTE auto_input(0);
 DROP PROCEDURE auto_input;
 
 
-/*콤마로 한꺼번에 정리해서 name과 password */
+/*콤마로 한꺼번에 정리해서 name과 password 출력 */
 select LISTAGG(name, ',') within group (order by name asc) AS NAMES , LISTAGG(PASSWORD, ',') within group (order by name asc) AS NAMES from userinfo;
     
 
