@@ -24,38 +24,81 @@ http://서버의아이피:{도커쪽으로 포워딩할 임의 포트}
 
 
 -------------------------------데이터베이스 오라클 -----------------------------------------------
+
 /*인덱스 설정*/
 CREATE INDEX userinfo_index on userinfo(name);
+
 
 /*함수 설정*/
 CREATE or REPLACE FUNCTION userinfo_function1 (test VARCHAR2) RETURN VARCHAR2 
 	IS num1 NUMBER;
     
-	BEGIN
+   BEGIN
 	    
   	IF TEST = 'EX1' THEN
-      SELECT count(*) INTO  num1 FROM userinfo;
+      		SELECT count(*) INTO  num1 FROM userinfo;
       
  	ELSIF TEST = 'EX2' THEN
-        select count(*)+10 INTO  num1 FROM userinfo;
+        	SELECT count(*)+10 INTO  num1 FROM userinfo;
         
-    END IF;
+    	END IF;
     
       RETURN num1;
         
-	END userinfo_function1;
+   END userinfo_function1;
+
 
 /*함수 확인*/
 SELECT userinfo_function1('EX2') FROM DUAL;
 
+
 /*시퀀스 생성*/
 CREATE SEQUENCE idx_userinfo INCREMENT BY 1 MINVALUE 1 MAXVALUE 999999;
+
 
 /*시퀀스 증가 및 조회*/
 SELECT idx_userinfo.nextVal FROM DUAL;
 
+
 /*사용자가 만든 시퀀스 목록 조회*/
 SELECT * FROM user_sequences;
+
+
+/*프로시저 만들기*/
+CREATE  PROCEDURE auto_input (num1 IN NUMBER)
+IS
+    vn_num NUMBER := num1;
+BEGIN
+
+    LOOP
+    
+     insert into userinfo (name,password) values (concat('test',idx_userinfo.nextVal),'9999');
+     
+     dbms_output.put_line(vn_num); <-콘솔로 숫자 찍기
+     
+     vn_num := vn_num+1;
+     
+     EXIT WHEN vn_num > 10;
+     
+    END LOOP;
+
+END;
+
+
+/*콘솔 찍기위한 옵션켜기*/
+SET SERVEROUTPUT ON;
+
+
+/*프로시저 실행*/
+EXECUTE auto_input(0);
+
+
+/*프로시저 삭제*/
+DROP PROCEDURE auto_input;
+
+
+/*콤마로 한꺼번에 정리해서 name과 password */
+select LISTAGG(name, ',') within group (order by name asc) AS NAMES , LISTAGG(PASSWORD, ',') within group (order by name asc) AS NAMES from userinfo;
     
 
 
