@@ -22,12 +22,12 @@ http://서버의아이피:{도커쪽으로 포워딩할 임의 포트}
 
 ***.war ---> /var/lib/tomcat8/webapps/ 파일저장
 
+
+-------------------------------데이터베이스 오라클 -----------------------------------------------
 /*인덱스 설정*/
-/*
 CREATE INDEX userinfo_index on userinfo(name);
-*/
+
 /*함수 설정*/
-/*
 CREATE or REPLACE FUNCTION userinfo_function1 (test VARCHAR2) RETURN VARCHAR2 
 	IS num1 NUMBER;
     
@@ -44,7 +44,20 @@ CREATE or REPLACE FUNCTION userinfo_function1 (test VARCHAR2) RETURN VARCHAR2
       RETURN num1;
         
 	END userinfo_function1;
-*/
+
+/*함수 확인*/
+SELECT userinfo_function1('EX2') FROM DUAL;
+
+/*시퀀스 생성*/
+CREATE SEQUENCE idx_userinfo INCREMENT BY 1 MINVALUE 1 MAXVALUE 999999;
+
+/*시퀀스 증가 및 조회*/
+SELECT idx_userinfo.nextVal FROM DUAL;
+
+/*사용자가 만든 시퀀스 목록 조회*/
+SELECT * FROM user_sequences;
+    
+
 
 
 
