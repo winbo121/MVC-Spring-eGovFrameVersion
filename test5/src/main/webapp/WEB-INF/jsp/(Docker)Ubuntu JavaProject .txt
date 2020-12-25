@@ -23,6 +23,34 @@ http://서버의아이피:{도커쪽으로 포워딩할 임의 포트}
 ***.war ---> /var/lib/tomcat8/webapps/ 파일저장
 
 
+-------------#mariadb 설치-------------
+apt-get update
+apt-get install mariadb-server
+service mysql restart -> mysql 재기동
+mysql_secure_installation -> 비밀번호 초기화 후 y
+
+
+mysql -u root -p (접속)
+
+show databases;
+
+use [데이터베이스 명<스키마 명>]
+
+use mysql (모든유저 관리) 
+{
+select * from user\G; (유저들 조회)
+update user set plugin='' where user='root' and host = 'localhost'; (root 비번없이 들어가지는것을 방지)
+flush privileges;
+create user [아이디] @localhost identified by '[비번]'; (유저 추가)
+drop user [아이디] @localhost; (유저 삭제)
+grant all privileges on [스키마 명].[테이블 명] to 'winbo121' @localhost identified by '[비번]'; (권한주기)
+show grants for '[아이디]' @localhost; 
+revoke all on [스키마 명].[테이블 명] from '[아이디]' @localhost; (권한삭제)
+}
+
+(일반 콘솔창)mysqldump -h [외부 아이피] -u[외부 아이디] -p[외부 비번] [외부에서 가져올 스키마 명] | mysql -u[자신 아이디] -p[자신 비번] [자신의 적용할 <만들어진>스키마 명]; (외부에서 디비 가져오기)
+
+
 -------------------------------데이터베이스 오라클 -----------------------------------------------
 
 /*인덱스 설정*/
