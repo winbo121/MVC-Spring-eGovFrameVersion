@@ -113,7 +113,7 @@ $("#deleteUser").on("click",function(){
 </tbody>
 </table> 
 <form id="userForm">
-아이디: <input type="text" name="name"> <br>
+아이디1: <input type="text" name="name"> <br>
 비밀번호: <input type="text" name="password">
 <button type="button" id="insertUser">입력</button><button type="button" id="deleteUser">삭제</button>  
 </form>
