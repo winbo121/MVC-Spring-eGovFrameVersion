@@ -9,7 +9,8 @@
                 
 
 	<!-- 스켄할 패키지 추가 -->
-      <context:component-scan base-package="test.example" />   
+      <context:component-scan base-package="test.example" />
+ 
 		
 	<!-- 컨트롤러에서 jsp가 있는장소에 (.jsp)없이 매핑을 가능하게  하는 빈즈    -->
        <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"

@@ -10,8 +10,8 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/spring/context-mapper.xml</config>
+		<config>src/main/webapp/WEB-INF/spring-mvc/action-servlet.xml</config>
 		<config>src/main/resources/spring/context-datasource.xml</config>
-		<config>src/main/webapp/WEB-INF/action-servlet.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

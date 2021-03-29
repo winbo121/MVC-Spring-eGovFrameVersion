@@ -8,5 +8,11 @@
 		<property name="configLocation" value="classpath:/spring/sqlmap/sql-mapper-config.xml" />
 		<property name="mapperLocations" value="classpath:/spring/sqlmap/mappers/*.xml" />
 	</bean>
+	
+	
+	<!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
+ 	<bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
+		<property name="basePackage" value="test.example" />
+	</bean>
 
 </beans>
