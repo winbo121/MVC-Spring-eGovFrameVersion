@@ -38,7 +38,10 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value="/list.do")
 	public String list(HttpServletRequest request,BoardVO V) throws Exception {	
-		 
+		
+		String start = request.getParameter("start");
+		System.out.println(start);
+		
 		ObjectMapper O=new ObjectMapper();
 		
 		List<BoardVO> L=boardService.selectUser(V);
