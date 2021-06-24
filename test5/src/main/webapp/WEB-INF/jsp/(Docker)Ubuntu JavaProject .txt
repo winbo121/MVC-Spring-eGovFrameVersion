@@ -132,6 +132,31 @@ DROP PROCEDURE auto_input;
 
 /*콤마로 한꺼번에 정리해서 name과 password 출력 */
 select LISTAGG(name, ',') within group (order by name asc) AS NAMES , LISTAGG(PASSWORD, ',') within group (order by name asc) AS NAMES from userinfo;
+
+
+
+/*mysql 프로시저*/
+DELIMITER $$
+ DROP PROCEDURE IF EXISTS test_mysql_while_loop$$
+ CREATE PROCEDURE test_mysql_while_loop()
+ BEGIN
+ DECLARE x INT;
+ 
+ SET x = 0;
+
+ 
+ WHILE x  <= 100 DO
+
+insert into userinfo values (concat('test',x),7878);
+
+ SET  x = x + 1; 
+ END WHILE;
+ 
+ END
+ $$ DELIMITER ;
+ 
+ /*프로시저 호출*/
+ CALL test_mysql_while_loop();
     
 
 
