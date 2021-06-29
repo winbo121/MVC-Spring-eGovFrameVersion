@@ -163,7 +163,7 @@ insert into userinfo values (concat('test',x),7878);
 
 
 <<우분투 오라클 설치 명령어>>
-
+https://www.oracle.com/database/technologies/xe-prior-releases.html 다운로드 받는곳
 
 docker cp oracle-xe-11.2.0-1.0.x86_64.rpm.zip <컨테이너 이름>:/
 
