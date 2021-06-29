@@ -157,8 +157,75 @@ insert into userinfo values (concat('test',x),7878);
  
  /*프로시저 호출*/
  CALL test_mysql_while_loop();
-    
 
+
+
+
+
+<<우분투 오라클 설치 명령어>>
+
+
+docker cp oracle-xe-11.2.0-1.0.x86_64.rpm.zip <컨테이너 이름>:/
+
+unzip oracle*
+
+cd Disk1/
+
+apt-get -y install alien libaio1 unixodbc
+
+alien --scripts -d oracle*
+
+dpkg --install oracle*.deb
+
+/etc/init.d/oracle-xe configure
+
+systemctl start oracle-xe
+
+systemctl status oracle-xe
+
+vim /etc/bash.bashrc  -> 맨 밑에 . /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh 추가
+
+mkdir /oradata
+
+chmod 777 /oradata/
+
+cd /etc/init.d
+
+apt-get remove insserv
+
+vim oracle
+
+<추가     
+#!/bin/bash
+su - oracle
+. /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh
+systemctl start oracle-xe
+
+### BEGIN INIT INFO
+# Provides:          dovecot
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: dovecot
+# Description:       dovecot pop & imap daemon
+### END INIT INFO >
+
+ll /etc/rc* | grep oracle
+
+reboot
+
+systemctl status oracle-xe
+
+mkdir -p /u01/app/oracle/product/11.2.0/xe
+
+chown -R oracle.dba /u01/
+
+su - oracle
+
+/u01/app/oracle/product/11.2.0/xe/bin/createdb.sh
+
+sqlplus / as sysdba
 
 
 
