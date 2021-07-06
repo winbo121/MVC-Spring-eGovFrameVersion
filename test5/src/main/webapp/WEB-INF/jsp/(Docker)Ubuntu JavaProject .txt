@@ -167,6 +167,8 @@ https://www.oracle.com/database/technologies/xe-prior-releases.html 다운로드
 
 docker cp oracle-xe-11.2.0-1.0.x86_64.rpm.zip <컨테이너 이름>:/
 
+apt-get install bc
+
 unzip oracle*
 
 cd Disk1/
