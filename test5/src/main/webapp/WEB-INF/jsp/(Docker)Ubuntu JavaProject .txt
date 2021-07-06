@@ -177,6 +177,8 @@ alien --scripts -d oracle*
 
 dpkg --install oracle*.deb
 
+apt-get install net-tools
+
 /etc/init.d/oracle-xe configure
 
 systemctl start oracle-xe
