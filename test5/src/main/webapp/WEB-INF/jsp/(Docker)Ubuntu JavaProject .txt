@@ -32,7 +32,7 @@ vim /etc/mysql/mysql.conf.d/mysqld.cnf
 
 service mysql restart
 
-msyql -u root -p
+mysql -u root -p
 
 create user 'root'@'%' identified by '123456';
 
