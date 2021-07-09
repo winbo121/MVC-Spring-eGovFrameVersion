@@ -22,6 +22,32 @@ http://서버의아이피:{도커쪽으로 포워딩할 임의 포트}
 
 ***.war ---> /var/lib/tomcat8/webapps/ 파일저장
 
+-------------#mysql 설치-------------
+
+apt-get install -y mysql-server ufw
+
+vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+#bind-address 127.0.0.1  <-- 주석처리
+
+service mysql restart
+
+msyql -u root -p
+
+create user 'root'@'%' identified by '123456';
+
+grant all privileges on *.* to 'root'@'%' with grant option;
+
+flush privileges;
+
+service mysql restart
+
+ufw allow out 3306/tcp
+
+ufw allow in 3306/tcp
+
+service mysql restart
+
 
 -------------#mariadb 설치-------------
 apt-get update
