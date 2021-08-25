@@ -48,6 +48,7 @@ echo "end kice core deploy"
 
 그리고 나머지는 사진들로 대체 및 참고
 
+/var/lib/jenkins/workspace/ 에서 잘 프로젝트가 들어왔는지 확인가능!
 
 
 -------------<<쉘 스크립트 부가설명>>---------------------
@@ -79,3 +80,6 @@ mv test5.war /var/lib/tomcat8/webapps/ (톰캣으로 파일을 옮기기)
 echo "end kice core deploy"
 
 -------------------------------------------
+
+
+
