@@ -2,7 +2,7 @@ docker run -d --privileged -p8020:8080 -p8021:9000 --name test333 ubuntu:16.04 /
 
 docker exec -it test333 /bin/bash
 
-apt-get install -y wget vim sudo git openjdk-8-jre-headless openjdk-8-jdk tomcat8 maridb-server maven apt-transport-https ca-certificates
+apt-get install -y wget vim sudo git openjdk-8-jre-headless openjdk-8-jdk tomcat8 mariadb-server maven apt-transport-https ca-certificates
 
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
   
