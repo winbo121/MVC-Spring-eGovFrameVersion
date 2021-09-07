@@ -29,7 +29,7 @@ public class BoardController {
 	private BoardService boardService;
 
 	
-	@RequestMapping(value="/start5.do")
+	@RequestMapping(value="/start.do")
 	public String start(HttpServletRequest request,BoardVO V, Model M) throws Exception {	
 		
 		return "NewFile";
