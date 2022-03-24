@@ -35,7 +35,7 @@ echo "start kice core deploy"
 
 cd /var/lib/jenkins/workspace/test5/test5/
 
-mvn install
+mvn clean install
 
 cd /var/lib/jenkins/workspace/test5/test5/target/
 
