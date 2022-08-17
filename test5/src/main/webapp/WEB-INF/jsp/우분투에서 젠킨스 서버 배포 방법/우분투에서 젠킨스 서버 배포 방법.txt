@@ -4,7 +4,7 @@ docker exec -it test333 /bin/bash
 
 apt-get install -y wget vim sudo git openjdk-8-jre-headless openjdk-8-jdk tomcat8 mariadb-server maven apt-transport-https ca-certificates
 
-wget --no-check-certificate -qO - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+wget --no-check-certificate -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add -
   
 sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'  
 
