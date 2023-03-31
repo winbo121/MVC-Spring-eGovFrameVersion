@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,6 +27,10 @@ public class BoardController {
 	
 	@Resource
 	private BoardService boardService;
+	
+	/** Validator */
+	@Resource(name = "beanValidator")
+	protected DefaultBeanValidator beanValidator;
 
 	
 	@RequestMapping(value="/start.do")
@@ -53,8 +57,13 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping(value="/insert.do")
-	public String insert(HttpServletRequest request,BoardVO V) throws Exception {	
+	public String insert(HttpServletRequest request,BoardVO V ,BindingResult bindingResult) throws Exception {	
 		 
+		
+		beanValidator.validate(V, bindingResult);
+		
+		System.out.println(bindingResult.hasErrors()+"@@@@@@@@@@@@@@@@@@");
+		
 		ObjectMapper O=new ObjectMapper();
 		
 		boardService.insertUser(V);
@@ -81,6 +90,15 @@ public class BoardController {
 		return O.writeValueAsString(M);
 	}
 
+	
+	/**
+	 * validation rule dynamic java script
+	 */
+	@RequestMapping("/validator.do")
+	public String validate() {
+		System.out.println("@@@@@@@@@@@@@");
+		return "validator";
+	}
 	
 	
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
+<%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +14,8 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css" />
 
+<script type="text/javascript" src="<c:url value='/validator.do'/>"></script>
+<validator:javascript formName="boardVO" staticJavascript="false" xhtml="true" cdata="false"/>
  
 <script type="text/javascript">
 var userTable;
@@ -48,11 +52,14 @@ $(document).ready(function(){
 	
 $("#insertUser").on("click",function(){
 
-	
+// 	frm = document.boardVO;
+// 	if(!validateBoardVO(frm)){
+//         return;
+//     }
 	$.ajax({
 		url:"insert.do",
 		type:"post",
-		data:$("#userForm").serialize(),
+		data:$("#boardVO").serialize(),
 		success:function(data){
 			var json=JSON.parse(data);
 			alert(json.data);
@@ -112,9 +119,9 @@ $("#deleteUser").on("click",function(){
 
 </tbody>
 </table> 
-<form id="userForm">
-testID 아이디: <input type="text" name="name"> <br>
-testPASSWORD 비밀번호: <input type="text" name="password">
+<form id="boardVO" name="boardVO">
+<label for="name"><spring:message code="board.test.name" /></label>: <input type="text" name="name"> <br>
+<label for="password"><spring:message code="board.test.password" /></label>: <input type="text" name="password">
 <button type="button" id="insertUser">입력</button><button type="button" id="deleteUser">삭제</button>  
 </form>
 </div>
