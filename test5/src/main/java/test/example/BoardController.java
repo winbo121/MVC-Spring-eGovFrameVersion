@@ -89,16 +89,5 @@ public class BoardController {
 		
 		return O.writeValueAsString(M);
 	}
-
-	
-	/**
-	 * validation rule dynamic java script
-	 */
-	@RequestMapping("/validator.do")
-	public String validate() {
-		System.out.println("@@@@@@@@@@@@@");
-		return "validator";
-	}
-	
 	
 }
