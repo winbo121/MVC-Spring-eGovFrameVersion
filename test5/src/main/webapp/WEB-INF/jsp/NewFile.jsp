@@ -14,8 +14,8 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css" />
 
-<script type="text/javascript" src="<c:url value='/validator.do'/>"></script>
-<validator:javascript formName="boardVO" staticJavascript="false" xhtml="true" cdata="false"/>
+<script type="text/javascript" src="validator.do"></script>  <!-- 벨리데이션 체크 하는 jsp 찾는부분 -->
+<validator:javascript formName="boardVO" staticJavascript="false" xhtml="true" cdata="false"/> <!-- 벨리데이션 앞단 폼테그용 사용부분 -->
  
 <script type="text/javascript">
 var userTable;
@@ -52,10 +52,13 @@ $(document).ready(function(){
 	
 $("#insertUser").on("click",function(){
 
-// 	frm = document.boardVO;
-// 	if(!validateBoardVO(frm)){
-//         return;
-//     }
+	frm = document.boardVO;
+	
+	/*앞단 벨리데이션 체크 유무*/
+	if(!validateBoardVO(frm)){
+        return;
+    }
+	
 	$.ajax({
 		url:"insert.do",
 		type:"post",

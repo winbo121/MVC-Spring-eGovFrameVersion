@@ -59,19 +59,23 @@ public class BoardController {
 	@RequestMapping(value="/insert.do")
 	public String insert(HttpServletRequest request,BoardVO V ,BindingResult bindingResult) throws Exception {	
 		 
-		
+		/*벨리데이션 작업*/
 		beanValidator.validate(V, bindingResult);
 		
-		System.out.println(bindingResult.hasErrors()+"@@@@@@@@@@@@@@@@@@");
-		
+		Map<String,String> M=new HashMap<String,String>();
 		ObjectMapper O=new ObjectMapper();
 		
-		boardService.insertUser(V);
 		
-		Map<String,String> M=new HashMap<String,String>();
+		/*벨리데이션 체크에 따라 인설트 ox*/
+		if(!bindingResult.hasErrors()) {
+			
+			boardService.insertUser(V);
+			M.put("data","SucessInsert");	
 		
-		M.put("data","SucessInsert");
-		
+		}else {
+			M.put("data","severValidateFail");	
+		}
+			
 		return O.writeValueAsString(M);
 	}
 	
@@ -88,6 +92,13 @@ public class BoardController {
 		M.put("data","SucessDelete");
 		
 		return O.writeValueAsString(M);
+	}
+	
+	@RequestMapping(value="/validator.do")
+	public String validator(HttpServletRequest request,BoardVO V) throws Exception {	
+        System.out.println(">>>>벨리데이션 체크해주는 JSP컨트롤러<<<<");
+		
+		return "cmmn/validator";
 	}
 	
 }
